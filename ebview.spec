@@ -1,6 +1,6 @@
 %define	name	ebview
 %define	version	0.3.6
-%define	release	%mkrel 3
+%define	release	%mkrel 4
 %define	Summary	EBView is a browser for EB/EPWING files
 
 Name:		%{name}
