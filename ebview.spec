@@ -14,9 +14,11 @@ Source0:	http://prdownloads.sourceforge.net/ebview/%{name}-%{version}.tar.bz2
 # patches from Gentoo
 Patch0:		ebview-0.3.6_pango_with_cairo.patch
 Patch1:		ebview-0.3.6-destdir.diff
+# Patch from debian
+Patch2:		ebview-0.3.6-fix-build.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildrootroot
-Requires:	eb libgtk+2.0_0
-BuildRequires:	eb-devel gtk2-devel
+Requires:	eb
+BuildRequires:	eb-devel gtk2-devel eb
 
 %description
 EBView is a browser for EB/EPWING files.
@@ -26,6 +28,7 @@ EBView is a browser for EB/EPWING files.
 %setup -q
 %patch0 -p0
 %patch1 -p1
+%patch2 -p0
 
 %build
 %configure2_5x
@@ -38,19 +41,6 @@ rm -rf %{buildroot}
 
 %find_lang %{name}
 
-# menu
-mkdir -p %{buildroot}%{_menudir}
-cat > %{buildroot}%{_menudir}/%{name} <<EOF
-?package(%{name}): \
-	command="%{_bindir}/ebview" \
-	icon="documentation_section.png" \
-	title="EBView" \
-	longtitle="%{Summary}" \
-	needs="x11" \
-	section="More Applications/Documentation" \
-	xdg="true"
-EOF
-
 mkdir -p %{buildroot}%{_datadir}/applications
 cat > %{buildroot}%{_datadir}/applications/mandriva-%{name}.desktop << EOF
 [Desktop Entry]
@@ -61,7 +51,7 @@ Icon=%{name}
 Terminal=false
 Type=Application
 StartupNotify=true
-Categories=X-MandrivaLinux-MoreApplications-Documentation;
+Categories=Utility;TextTools;GTK;
 EOF
 
 %clean
@@ -77,7 +67,6 @@ rm -rf %{buildroot}
 %defattr(-,root,root)
 %{_bindir}/ebview
 %{_datadir}/ebview
-%{_menudir}/%{name}
 %{_datadir}/applications/mandriva-%{name}.desktop
 %defattr(0644,root,root,0755)
 %doc AUTHORS ChangeLog NEWS README
