@@ -16,7 +16,6 @@ Patch0:		ebview-0.3.6_pango_with_cairo.patch
 Patch1:		ebview-0.3.6-destdir.diff
 # Patch from debian
 Patch2:		ebview-0.3.6-fix-build.patch
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildrootroot
 Requires:	eb
 BuildRequires:	eb-devel gtk2-devel eb
 
