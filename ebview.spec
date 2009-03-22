@@ -1,6 +1,6 @@
 %define	name	ebview
 %define	version	0.3.6
-%define	release	%mkrel 6
+%define	release	%mkrel 7
 %define	Summary	EBView is a browser for EB/EPWING files
 
 Name:		%{name}
@@ -16,6 +16,8 @@ Patch0:		ebview-0.3.6_pango_with_cairo.patch
 Patch1:		ebview-0.3.6-destdir.diff
 # Patch from debian
 Patch2:		ebview-0.3.6-fix-build.patch
+# Fix build errors with -Wformat -Werror=format-security
+Patch3:		ebview-0.3.6-format-security.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildrootroot
 Requires:	eb
 BuildRequires:	eb-devel gtk2-devel eb
@@ -29,6 +31,7 @@ EBView is a browser for EB/EPWING files.
 %patch0 -p0
 %patch1 -p1
 %patch2 -p0
+%patch3 -p1
 
 %build
 %configure2_5x
