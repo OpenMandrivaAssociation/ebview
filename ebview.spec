@@ -1,6 +1,6 @@
 %define	name	ebview
-%define	version	0.3.6
-%define	release	%mkrel 7
+%define	version	0.3.6.2
+%define	release	%mkrel 1
 %define	Summary	EBView is a browser for EB/EPWING files
 
 Name:		%{name}
@@ -10,12 +10,11 @@ Release:	%{release}
 Group:		System/Internationalization
 License:	GPL
 URL:		http://ebview.sourceforge.net/
-Source0:	http://prdownloads.sourceforge.net/ebview/%{name}-%{version}.tar.bz2
+Source0:		%{name}_%{version}.orig.tar.gz
+#Source0:	http://prdownloads.sourceforge.net/ebview/%{name}-%{version}.tar.bz2
 # patches from Gentoo
 Patch0:		ebview-0.3.6_pango_with_cairo.patch
-Patch1:		ebview-0.3.6-destdir.diff
-# Patch from debian
-Patch2:		ebview-0.3.6-fix-build.patch
+Patch1:		ebview-0.3.6.2-destdir.diff
 # Fix build errors with -Wformat -Werror=format-security
 Patch3:		ebview-0.3.6-format-security.patch
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-buildrootroot
@@ -30,7 +29,6 @@ EBView is a browser for EB/EPWING files.
 %setup -q
 %patch0 -p0
 %patch1 -p1
-%patch2 -p0
 %patch3 -p1
 
 %build
