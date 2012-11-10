@@ -1,0 +1,142 @@
+diff -ur ebview-0.3.6.2.orig/data/Makefile.am ebview-0.3.6.2/data/Makefile.am
+--- ebview-0.3.6.2.orig/data/Makefile.am	2004-02-15 14:59:38.000000000 +0100
++++ ebview-0.3.6.2/data/Makefile.am	2009-08-17 20:43:17.000000000 +0200
+@@ -6,13 +6,13 @@
+ 
+ install:
+ 	if test -r $(MKINSTALLDIRS); then \
+-		$(MKINSTALLDIRS) $(pkgdatadir); \
++		$(MKINSTALLDIRS) $(DESTDIR)$(pkgdatadir); \
+ 	else \
+-		$(top_srcdir)/mkinstalldirs $(pkgdatadir); \
++		$(top_srcdir)/mkinstalldirs $(DESTDIR)$(pkgdatadir); \
+ 	fi; \
+ 	data="$(data)"; \
+ 	for file in $$data; do \
+-		$(INSTALL_DATA) $(srcdir)/$$file $(pkgdatadir)/$$file; \
++		$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(pkgdatadir)/$$file; \
+ 	done;
+ 
+ # Define this as empty until I found a useful application.
+@@ -21,7 +21,7 @@
+ uninstall:
+ 	data="$(data)"; \
+ 	for file in $$data; do \
+-	  rm -f $(pkgdatadir)/$$file; \
++	  rm -f $(DESTDIR)$(pkgdatadir)/$$file; \
+ 	done
+ 
+ mostlyclean:
+diff -ur ebview-0.3.6.2.orig/data/Makefile.in ebview-0.3.6.2/data/Makefile.in
+--- ebview-0.3.6.2.orig/data/Makefile.in	2009-08-16 01:00:01.000000000 +0200
++++ ebview-0.3.6.2/data/Makefile.in	2009-08-17 20:43:17.000000000 +0200
+@@ -381,13 +381,13 @@
+ 
+ install:
+ 	if test -r $(MKINSTALLDIRS); then \
+-		$(MKINSTALLDIRS) $(pkgdatadir); \
++		$(MKINSTALLDIRS) $(DESTDIR)$(pkgdatadir); \
+ 	else \
+-		$(top_srcdir)/mkinstalldirs $(pkgdatadir); \
++		$(top_srcdir)/mkinstalldirs $(DESTDIR)$(pkgdatadir); \
+ 	fi; \
+ 	data="$(data)"; \
+ 	for file in $$data; do \
+-		$(INSTALL_DATA) $(srcdir)/$$file $(pkgdatadir)/$$file; \
++		$(INSTALL_DATA) $(srcdir)/$$file $(DESTDIR)$(pkgdatadir)/$$file; \
+ 	done;
+ 
+ # Define this as empty until I found a useful application.
+@@ -396,7 +396,7 @@
+ uninstall:
+ 	data="$(data)"; \
+ 	for file in $$data; do \
+-	  rm -f $(pkgdatadir)/$$file; \
++	  rm -f $(DESTDIR)$(pkgdatadir)/$$file; \
+ 	done
+ 
+ mostlyclean:
+diff -ur ebview-0.3.6.2.orig/doc/Makefile.am ebview-0.3.6.2/doc/Makefile.am
+--- ebview-0.3.6.2.orig/doc/Makefile.am	2004-02-15 14:59:38.000000000 +0100
++++ ebview-0.3.6.2/doc/Makefile.am	2009-08-17 20:43:17.000000000 +0200
+@@ -9,15 +9,15 @@
+ 	dir="$(dir)"; \
+ 	for lang in $$dir; do \
+ 		if test -r $(MKINSTALLDIRS); then \
+-			$(MKINSTALLDIRS) $(pkgdatadir)/help/$$lang; \
++			$(MKINSTALLDIRS) $(DESTDIR)$(pkgdatadir)/help/$$lang; \
+ 		else \
+-			$(top_srcdir)/mkinstalldirs $(pkgdatadir)/help/$$lang; \
++			$(top_srcdir)/mkinstalldirs $(DESTDIR)$(pkgdatadir)/help/$$lang; \
+ 		fi; \
+ 	done; \
+ 	data="$(data)"; \
+ 	for lang in $$dir; do \
+ 		for file in $$data; do \
+-			$(INSTALL_DATA) $(srcdir)/$$lang/$$file $(pkgdatadir)/help/$$lang/$$file; \
++			$(INSTALL_DATA) $(srcdir)/$$lang/$$file $(DESTDIR)$(pkgdatadir)/help/$$lang/$$file; \
+ 		done; \
+ 	done;
+ 
+@@ -25,5 +25,5 @@
+ installcheck:
+ 
+ uninstall:
+-	rm -fr $(pkgdatadir)/help
++	rm -fr $(DESTDIR)$(pkgdatadir)/help
+ 
+diff -ur ebview-0.3.6.2.orig/doc/Makefile.in ebview-0.3.6.2/doc/Makefile.in
+--- ebview-0.3.6.2.orig/doc/Makefile.in	2009-08-16 01:00:01.000000000 +0200
++++ ebview-0.3.6.2/doc/Makefile.in	2009-08-17 20:45:13.000000000 +0200
+@@ -385,15 +385,15 @@
+ 	dir="$(dir)"; \
+ 	for lang in $$dir; do \
+ 		if test -r $(MKINSTALLDIRS); then \
+-			$(MKINSTALLDIRS) $(pkgdatadir)/help/$$lang; \
++			$(MKINSTALLDIRS) $(DESTDIR)$(pkgdatadir)/help/$$lang; \
+ 		else \
+-			$(top_srcdir)/mkinstalldirs $(pkgdatadir)/help/$$lang; \
++			$(top_srcdir)/mkinstalldirs $(DESTDIR)$(pkgdatadir)/help/$$lang; \
+ 		fi; \
+ 	done; \
+ 	data="$(data)"; \
+ 	for lang in $$dir; do \
+ 		for file in $$data; do \
+-			$(INSTALL_DATA) $(srcdir)/$$lang/$$file $(pkgdatadir)/help/$$lang/$$file; \
++			$(INSTALL_DATA) $(srcdir)/$$lang/$$file $(DESTDIR)$(pkgdatadir)/help/$$lang/$$file; \
+ 		done; \
+ 	done;
+ 
+@@ -401,7 +401,7 @@
+ installcheck:
+ 
+ uninstall:
+-	rm -fr $(pkgdatadir)/help
++	rm -fr $(DESTDIR)$(pkgdatadir)/help
+ 
+ # Tell versions [3.59,3.63) of GNU make to not export all variables.
+ # Otherwise a system limit (for SysV at least) may be exceeded.
+diff -ur ebview-0.3.6.2.orig/po/Makefile.in.in ebview-0.3.6.2/po/Makefile.in.in
+--- ebview-0.3.6.2.orig/po/Makefile.in.in	2004-02-22 07:34:42.000000000 +0100
++++ ebview-0.3.6.2/po/Makefile.in.in	2009-08-17 20:43:17.000000000 +0200
+@@ -115,16 +115,16 @@
+ install-data-no: all
+ install-data-yes: all
+ 	if test -r "$(MKINSTALLDIRS)"; then \
+-	  $(MKINSTALLDIRS) $(datadir); \
++	  $(MKINSTALLDIRS) $(DESTDIR)$(datadir); \
+ 	else \
+-	  $(SHELL) $(top_srcdir)/mkinstalldirs $(datadir); \
++	  $(SHELL) $(top_srcdir)/mkinstalldirs $(DESTDIR)$(datadir); \
+ 	fi
+ 	@catalogs='$(CATALOGS)'; \
+ 	for cat in $$catalogs; do \
+ 	  cat=`basename $$cat`; \
+ 	  case "$$cat" in \
+-	    *.gmo) destdir=$(gnulocaledir);; \
+-	    *)     destdir=$(localedir);; \
++	    *.gmo) destdir=$(DESTDIR)$(gnulocaledir);; \
++	    *)     destdir=$(DESTDIR)$(localedir);; \
+ 	  esac; \
+ 	  lang=`echo $$cat | sed 's/\$(CATOBJEXT)$$//'`; \
+ 	  dir=$$destdir/$$lang/LC_MESSAGES; \

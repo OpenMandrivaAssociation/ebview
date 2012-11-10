@@ -1,0 +1,21 @@
+diff -p -up ebview-0.3.6/src/dialog.c.orig ebview-0.3.6/src/dialog.c
+--- ebview-0.3.6/src/dialog.c.orig	2009-03-22 19:56:59.000000000 -0300
++++ ebview-0.3.6/src/dialog.c	2009-03-22 20:06:25.000000000 -0300
+@@ -69,7 +69,7 @@ gboolean idle_warning(gpointer data){
+ 					GTK_DIALOG_DESTROY_WITH_PARENT /* | GTK_DIALOG_NO_SEPARATOR */,
+ 					GTK_MESSAGE_WARNING,
+ 					GTK_BUTTONS_OK,
+-					g_message);
++					"%.1024s", g_message);
+ 	gtk_dialog_run(GTK_DIALOG(dialog));
+ 	gtk_widget_destroy(dialog);
+ 	active  = FALSE;
+@@ -98,7 +98,7 @@ gboolean idle_error(gpointer data){
+ 					GTK_DIALOG_DESTROY_WITH_PARENT /* | GTK_DIALOG_NO_SEPARATOR */,
+ 					GTK_MESSAGE_ERROR,
+ 					GTK_BUTTONS_CLOSE,
+-					g_message);
++					"%.1024s", g_message);
+ 					
+ 	gtk_dialog_run(GTK_DIALOG(dialog));
+ 	gtk_widget_destroy(dialog);
