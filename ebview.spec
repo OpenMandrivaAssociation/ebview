@@ -1,5 +1,5 @@
 Name:		ebview
-Summary:	EBView is a browser for EB/EPWING files
+Summary:	Browser for EB/EPWING files
 Version:	0.3.6.2
 Release:	3
 Group:		System/Internationalization
