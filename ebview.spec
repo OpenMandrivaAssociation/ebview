@@ -1,7 +1,7 @@
 Name:		ebview
 Summary:	Browser for EB/EPWING files
 Version:	0.3.6.2
-Release:	3
+Release:	4
 Group:		System/Internationalization
 License:	GPL
 URL:		http://ebview.sourceforge.net/
@@ -32,7 +32,6 @@ EBView is a browser for EB/EPWING files.
 %make
 
 %install
-rm -rf %{buildroot}
 %makeinstall_std
 
 %find_lang %{name}
@@ -51,7 +50,6 @@ Categories=Utility;TextTools;GTK;
 EOF
 
 %clean
-rm -rf %{buildroot}
 
 %if %mdkversion < 200900
 %post
@@ -64,7 +62,6 @@ rm -rf %{buildroot}
 %endif
 
 %files -f %{name}.lang
-%defattr(-,root,root)
 %{_bindir}/ebview
 %{_datadir}/ebview
 %{_datadir}/applications/mandriva-%{name}.desktop
