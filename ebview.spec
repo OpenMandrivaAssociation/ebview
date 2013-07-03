@@ -13,8 +13,9 @@ Patch1:		ebview-0.3.6.2-destdir.diff
 # Fix build errors with -Wformat -Werror=format-security
 Patch3:		ebview-0.3.6-format-security.patch
 Requires:	eb
-BuildRequires:	eb-devel gtk2-devel eb
+BuildRequires:	eb-devel eb
 BuildRequires:  pkgconfig(pangox)
+BuildRequires:  pkgconfig(gtk+-2.0)
 
 %description
 EBView is a browser for EB/EPWING files.
@@ -50,16 +51,6 @@ Categories=Utility;TextTools;GTK;
 EOF
 
 %clean
-
-%if %mdkversion < 200900
-%post
-%update_menus
-%endif
-
-%if %mdkversion < 200900
-%postun
-%clean_menus
-%endif
 
 %files -f %{name}.lang
 %{_bindir}/ebview
