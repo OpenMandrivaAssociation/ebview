@@ -1,7 +1,7 @@
 Name:		ebview
 Summary:	Browser for EB/EPWING files
 Version:	0.3.6.2
-Release:	4
+Release:	5
 Group:		System/Internationalization
 License:	GPL
 URL:		http://ebview.sourceforge.net/
