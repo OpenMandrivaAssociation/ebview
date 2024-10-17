@@ -4,7 +4,7 @@ Version:	0.3.6.2
 Release:	5
 Group:		System/Internationalization
 License:	GPL
-URL:		http://ebview.sourceforge.net/
+URL:		https://ebview.sourceforge.net/
 Source0:		%{name}_%{version}.orig.tar.gz
 #Source0:	http://prdownloads.sourceforge.net/ebview/%{name}-%{version}.tar.bz2
 # patches from Gentoo
