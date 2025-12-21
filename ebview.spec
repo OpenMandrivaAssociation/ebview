@@ -13,6 +13,11 @@ Patch1:		ebview-0.3.6.2-destdir.diff
 # Fix build errors with -Wformat -Werror=format-security
 Patch3:		ebview-0.3.6-format-security.patch
 Requires:	eb
+BuildRequires:	autoconf
+BuildRequires:	automake
+BuildRequires:	libtool-base
+BuildRequires:	slibtool
+BuildRequires:	make
 BuildRequires:	eb-devel eb
 BuildRequires:  pkgconfig(pangox)
 BuildRequires:  pkgconfig(gtk+-2.0)
